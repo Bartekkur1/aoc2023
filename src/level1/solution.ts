@@ -12,7 +12,7 @@ const numMap: { [key: string]: string } = {
   'nine': 'n9e'
 };
 
-const replaceStrToNum = (input: string) => {
+export const replaceStrToNum = (input: string) => {
   const numNames = Object.keys(numMap);
   let checkSize = 1;
   while (checkSize < input.length + 1) {
