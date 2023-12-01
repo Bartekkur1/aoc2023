@@ -1,0 +1,25 @@
+{
+  "name": "aoc-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./src/level$level/solution.ts",
+    "setup": "node setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Bartekkur1@github.com/Bartekkur1/aoc-2022.git"
+  },
+  "author": "Bartek Kurpanik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bartekkur1/aoc-2022/issues"
+  },
+  "homepage": "https://github.com/Bartekkur1/aoc-2022#readme",
+  "dependencies": {
+    "aoc-util": "^1.0.0",
+    "ts-node": "^10.9.1"
+  }
+}
