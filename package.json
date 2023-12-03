@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
     "start": "ts-node ./src/level$level/solution.ts",
     "setup": "node setup.js"
   },
@@ -19,8 +18,9 @@
   },
   "homepage": "https://github.com/Bartekkur1/aoc-2022#readme",
   "dependencies": {
+    "@types/uuid": "^9.0.7",
     "aoc-util": "^1.0.0",
     "ts-node": "^10.9.1",
-    "vitest": "^0.34.6"
+    "uuid": "^9.0.1"
   }
 }
