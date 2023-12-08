@@ -13,9 +13,3 @@ fs.writeFileSync(`${basePath}/solution.ts`, '');
 console.log(`Solution file created ✅`);
 fs.writeFileSync(`${basePath}/input.txt`, '');
 console.log(`Input file created ✅`);
-
-const testFileContent = `import { describe, expect, it } from "vitest";
-
-describe("level${level}", () => {});
-`;
-fs.writeFileSync(`${basePath}/level${level}.test.ts`, testFileContent);

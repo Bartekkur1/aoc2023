@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/Bartekkur1/aoc-2022#readme",
   "dependencies": {
+    "@types/cli-progress": "^3.11.5",
     "@types/uuid": "^9.0.7",
     "aoc-util": "^1.0.0",
+    "cli-progress": "^3.12.0",
     "ts-node": "^10.9.1",
     "uuid": "^9.0.1"
   }
