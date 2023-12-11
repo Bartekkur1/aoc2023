@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node ./src/level$level/solution.ts",
+    "start-watch": "nodemon ./src/level$level/solution2.ts",
     "setup": "node setup.js"
   },
   "repository": {
@@ -22,7 +23,10 @@
     "@types/uuid": "^9.0.7",
     "aoc-util": "^1.0.0",
     "cli-progress": "^3.12.0",
-    "ts-node": "^10.9.1",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2"
   }
 }
