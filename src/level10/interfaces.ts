@@ -43,12 +43,6 @@ export interface GroundCell {
   found: boolean;
 };
 
-export interface GroundCellGroup {
-  cells: GroundCell[];
-  withinPipe: boolean;
-  id: string;
-};
-
 export interface Input {
   start: Position;
   pipes: Pipe[];

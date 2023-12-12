@@ -154,8 +154,8 @@ export const printPositions = (positions: Position[], width: number, height: num
   for (let y = 0; y <= height; y++) {
     let line = '';
     for (let x = 0; x <= width; x++) {
-      const pipe = positions.find(p => p.x === x && p.y === y);
-      if (pipe) {
+      const position = positions.find(p => p.x === x && p.y === y);
+      if (position) {
         line += '#';
         // line += pipe.type;
       } else {
@@ -192,4 +192,46 @@ export const buildGroundCellsMap = (pipes: Pipe[], width: number, height: number
     }
   }
   return groundCells;
+};
+
+export const findCellNeighbors = (cell: GroundCell, groundCells: GroundCell[]): GroundCell[] => {
+  const { x, y } = cell.position;
+  return [
+    groundCells.find(c => c.position.x === x + 1 && c.position.y === y)!,
+    groundCells.find(c => c.position.x === x - 1 && c.position.y === y)!,
+    groundCells.find(c => c.position.x === x && c.position.y === y + 1)!,
+    groundCells.find(c => c.position.x === x && c.position.y === y - 1)!,
+  ].filter(c => c !== undefined);
+};
+
+export const findCellGroup = (cell: GroundCell, cells: GroundCell[]): GroundCell[] => {
+  cell.inGroup = true;
+  const group: GroundCell[] = [cell];
+  const cellNeighbors = findCellNeighbors(cell, cells);
+  for (const neighbor of cellNeighbors) {
+    if (!neighbor.inGroup) {
+      group.push(...findCellGroup(neighbor, cells));
+    }
+  }
+  return group;
+};
+
+export const isPointInsideVertices = (point: Position, vertices: Position[]) => {
+  const { x, y } = point;
+
+  let inside = false;
+
+  for (let i = 0, j = vertices.length - 1; i < vertices.length; j = i++) {
+    const { x: xi, y: yi } = vertices[i];
+    const { x: xj, y: yj } = vertices[j];
+
+    const intersect = ((yi > y) !== (yj > y)) &&
+      (x < ((xj - xi) * (y - yi)) / (yj - yi) + xi);
+
+    if (intersect) {
+      inside = !inside;
+    }
+  }
+
+  return inside;
 };
