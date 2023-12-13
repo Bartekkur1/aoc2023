@@ -39,12 +39,12 @@ const sleep = async (ms: number) => {
 };
 
 let sum = 0;
-const workersCount = 10;
+const workersCount = 4;
 let jobsRunning = 0;
 
 (async () => {
   while (springLines.length > 0) {
-    if (jobsRunning < workersCount) {
+    if (jobsRunning < workersCount && springLines.length > 0) {
       const spring = springLines.shift();
       console.log(`Starting job for: `, spring!.springs);
       jobsRunning++;
@@ -54,7 +54,7 @@ let jobsRunning = 0;
         console.log(sum);
       })
     }
-    await sleep(100);
+    await sleep(500);
   }
 })();
 

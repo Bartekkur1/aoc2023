@@ -64,38 +64,26 @@ const unfoldSpringLine = (times: number, { sizes, springs }: SpringLine): Spring
     springs: newSprings.join('').slice(0, -1)
   };
 };
-// const countSpringCombinations = (springLines: SpringLine[], part2: boolean = false) => {
-//   let sum = 0;
-//   let i = 0;
-//   for (const springLine of springLines) {
-//     console.log(`Starting on: `, springLine.springs);
-//     if (part2) {
-//       const initialCombinations = generateCombinations(unfoldSpringLine(1, springLine));
-//       const oneCombination = generateCombinations(springLine);
-//       const twoUnfold = unfoldSpringLine(2, springLine);
-//       const twoCombination = generateCombinations(twoUnfold);
-//       const growFactor = twoCombination.length / initialCombinations.length;
-//       const fiveTimes = oneCombination.length * growFactor * growFactor * growFactor * growFactor;
-//       sum += fiveTimes;
-//     } else {
-//       sum += generateCombinations(springLine).length;
-//     }
-//     i++;
-//   }
-//   return sum;
-// };
 
 const countSpringCombinations = (springLine: SpringLine, part2: boolean = false) => {
   let sum = 0;
-  // console.log(`Starting on: `, springLine.springs);
   if (part2) {
     const initialCombinations = generateCombinations(unfoldSpringLine(1, springLine));
+
     const oneCombination = generateCombinations(springLine);
     const twoUnfold = unfoldSpringLine(2, springLine);
     const twoCombination = generateCombinations(twoUnfold);
+
     const growFactor = twoCombination.length / initialCombinations.length;
-    const fiveTimes = oneCombination.length * growFactor * growFactor * growFactor * growFactor;
-    sum += fiveTimes;
+
+    const growFactorRound = growFactor % 1 === 0;
+    if (!growFactorRound) {
+      console.log(`${springLine.springs} has a now round grow factor of ${growFactor}`);
+      sum += generateCombinations(unfoldSpringLine(5, springLine)).length;
+    } else {
+      const fiveTimes = oneCombination.length * growFactor * growFactor * growFactor * growFactor;
+      sum += fiveTimes;
+    }
   } else {
     sum += generateCombinations(springLine).length;
   }
@@ -109,3 +97,6 @@ const part2 = workerData.part2;
 const res = countSpringCombinations(input, part2 || false);
 
 parentPort?.postMessage(res);
+
+// ??#?.#??.?????#?.#??.??
+// ??#?.#??.?????#?.#??.??
